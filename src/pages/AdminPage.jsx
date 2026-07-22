@@ -5,10 +5,10 @@ export default function AdminPage() {
         <div className="w-full h-screen flex  ">
             <div className=" flex flex-col w-[360px] h-full bg-amber-200 text-black p-4 gap-2">
                 <h1 className="text-2xl font-bold mb-4">Using 'a' Tags</h1>
-                <a href="/admin">Admin Dashboard</a>
-                <a href="/admin/orders">Orders</a>  
-                <a href="/admin/products">Products</a>
-                <a href="/admin/users">Users</a>
+                <a href="/admin" className="text-xl  ">Admin Dashboard</a>
+                <a href="/admin/orders" className="text-xl ">Orders</a>  
+                <a href="/admin/products" className="text-xl ">Products</a>
+                <a href="/admin/users" className="text-xl ">Users</a>
 
                 {/* <h1 className="text-2xl font-bold mb-4 mt-4">Using 'Link' Tags</h1>
                 <link to="/admin">Admin Dashboard</link>
@@ -16,7 +16,7 @@ export default function AdminPage() {
                 <link to="/admin/products">Products</link>
                 <link to="/admin/users">Users</link> */}
             </div>
-            <div className="w-[calc(100%-360px)] h-full bg-red-100">
+            <div className="w-[calc(100%-360px)] h-full bg-red-100 p-2 text-xl font-bold  ">
                 <Routes>
                     <Route path="/" element={<h1>Admin Dashboard</h1>} />
                     <Route path="/orders" element={<h1>Orders Page</h1>} />
