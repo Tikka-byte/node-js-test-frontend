@@ -1,20 +1,28 @@
 import { useState } from 'react';
 import ProductCard from './components/productCard.jsx';
-import './App.css';
 import { MdHomeFilled } from "react-icons/md";
+import "./App.css";
+import HomePage from './pages/HomePage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
+import AdminPage from './pages/AdminPage.jsx';
+import TestPage from './pages/TestPage.jsx';
+import {Route, Routes } from 'react-router-dom';
+
+
 
 function App() {
-  
-
   return (
-    <div>
-
-      <ProductCard name="Apple Iphone " price="$959" image="https://picsum.photos/id/3/200/300" />
-      <ProductCard name="Samsung Galaxy " price="$899" image="https://picsum.photos/id/4/200/300" />
-      <ProductCard name="Google Pixel " price="$799" image="https://picsum.photos/id/5/200/300" />
-      <MdHomeFilled />
+    <div className=" " >
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/admin/*" element={<AdminPage />} />
+        <Route path="/test" element={<TestPage />} />
+      </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
