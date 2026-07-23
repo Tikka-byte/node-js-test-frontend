@@ -8,12 +8,14 @@ import RegisterPage from './pages/RegisterPage.jsx';
 import AdminPage from './pages/AdminPage.jsx';
 import TestPage from './pages/TestPage.jsx';
 import {Route, Routes } from 'react-router-dom';
+import {Toaster} from "react-hot-toast";
 
 
 
 function App() {
   return (
     <div className=" " >
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -21,6 +23,8 @@ function App() {
         <Route path="/admin/*" element={<AdminPage />} />
         <Route path="/test" element={<TestPage />} />
       </Routes>
+
+      <Toaster position="top-center" />
     </div>
   );
 }
