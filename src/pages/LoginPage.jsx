@@ -1,13 +1,14 @@
 
 import api from "../lib/api";
-import { Link } from "react-router-dom";
-import { useState, } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     function handleLogin() {
         // axios.post("http://localhost:3000/users/login",
@@ -20,13 +21,18 @@ export default function LoginPage() {
                 email: email,
                 password: password
             })
-       .then((res) => {
-                console.log(res.data.token);
-                console.log(res.data.isAdmin);
+            .then((res) => {
+
                 toast.success("Login Successful");
 
                 //browse store
                 localStorage.setItem("token", res.data.token);
+
+                if (res.data.isAdmin) {
+                    navigate("/admin");
+                } else {
+                    navigate("/")
+                }
 
 
             }).catch((err) => {
@@ -40,17 +46,19 @@ export default function LoginPage() {
     return (
         <div className="w-full h-screen flex  bg-[url('/bg.jpg')] bg-cover bg-center  justify-center items-center">
             <div className="w-[400px] h-[650px] backdrop-blur-md rounded-lg shadow-2xl flex flex-col items-center ">
-                <img src="/logo.png" className="w-[150px] h-[80px] object-cover mt-2  p-2 rounded-lg bg-secondary/30 " />
-                <h1 className="text-3xl font-bold text-secondary italic  mt-4">Welcome </h1>
+                <img src="/logo.png" className="w-[150px] h-[80px] object-cover mt-4  p-2 rounded-lg bg-secondary/30 " />
+                <h1 className="text-3xl font-bold text-secondary italic  mt-4">Welcome</h1>
 
                 <label className="w-full mt-4 text-lg font-semibold text-secondary p-2 ">Email</label>
                 <input
+                    value={email}
                     onChange={
                         (e) => setEmail(e.target.value)}
 
                     type="text" placeholder="user@gmail.com" className="w-[90%] h-[40px] rounded-lg p-3 border-2 border-secondary outline-none focus:border-secondary  transition-all duration-300" />
                 <label className="w-full mt-4 text-lg font-semibold text-secondary p-2 ">Password</label>
                 <input
+                    value={password}
                     onChange={
                         (e) => setPassword(e.target.value)}
 
