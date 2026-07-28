@@ -21,7 +21,7 @@ export default function RegisterPage() {
         }
 
 
-        api.post("/users/register",
+        api.post("/users/",
             {
                 email: email,
                 firstName: firstName,
@@ -32,14 +32,10 @@ export default function RegisterPage() {
 
                 toast.success("Register Successful");
 
-                //browse store
-                localStorage.setItem("token", res.data.token);
+                
 
-                if (res.data.isAdmin) {
-                    navigate("/admin");
-                } else {
-                    navigate("/")
-                }
+                    navigate("/login");
+                
 
 
             }).catch((err) => {
