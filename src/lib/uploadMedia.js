@@ -5,7 +5,7 @@ const url = "https://hseqcuhobjmkxjhfrzli.supabase.co";
 
 const supabase = createClient(url, key);
 
-export default function uploadMedia(file){
+export default async function uploadMedia(file){
 
     return new Promise(
         (resolve, reject)=>{
