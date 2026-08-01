@@ -14,7 +14,7 @@ import {Toaster} from "react-hot-toast";
 
 function App() {
   return (
-    <div className=" " >
+    <div className=" w-full h-screen " >
 
       <Routes>
         <Route path="/" element={<HomePage />} />

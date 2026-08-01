@@ -1,51 +1,66 @@
-import { useState } from "react";
-import uploadMedia from "../lib/uploadMedia";
-import { toast } from "react-hot-toast";
-
-
+import LoadingAnimation from "../components/loadingAnimation";
 
 export default function TestPage() {
-
-    const [file, setFiles] = useState(null);
-
-    function uploadFiles() {
-
-        uploadMedia(file).then(
-            (res)=>{
-                console.log(res);
-                toast.success("File uploaded successfully");
-            }
-        ).catch((err) => {
-            toast.error("Error uploading file");
-            console.error(err);
-        });
-
-
-         console.log(file);
-        // supabase.storage.from("images").upload(file.name,file).then(
-        //     () => {
-        //     const publicUrl = supabase.storage.from("images").getPublicUrl(file.name).data.publicUrl;
-        //     console.log(publicUrl);
-        // }).catch(() => {
-        //     toast.error("Error uploading file");
-        // });
-    }
     return (
-        <div className="w-full h-screen flex items-center justify-center" >
-           
-               <input type="file" 
-               multiple={true}
-               onChange={(e) => 
-                    setFiles(e.target.files[0])
+        <div className="w-[300px] h-[300px]  ">
+            <LoadingAnimation />
+        </div>
+    );
+}
 
-               } />
-               <button onClick={uploadFiles} className="bg-blue-700 text-white p-2 rounded-lg ">Submit</button>
+
+
+
+
+
+// import { useState } from "react";
+// import uploadMedia from "../lib/uploadMedia";
+// import { toast } from "react-hot-toast";
+
+
+
+// export default function TestPage() {
+
+//     const [file, setFiles] = useState(null);
+
+//     function uploadFiles() {
+
+//         uploadMedia(file).then(
+//             (res)=>{
+//                 console.log(res);
+//                 toast.success("File uploaded successfully");
+//             }
+//         ).catch((err) => {
+//             toast.error("Error uploading file");
+//             console.error(err);
+//         });
+
+
+//          console.log(file);
+//         // supabase.storage.from("images").upload(file.name,file).then(
+//         //     () => {
+//         //     const publicUrl = supabase.storage.from("images").getPublicUrl(file.name).data.publicUrl;
+//         //     console.log(publicUrl);
+//         // }).catch(() => {
+//         //     toast.error("Error uploading file");
+//         // });
+//     }
+//     return (
+//         <div className="w-full h-screen flex items-center justify-center" >
+           
+//                <input type="file" 
+//                multiple={true}
+//                onChange={(e) => 
+//                     setFiles(e.target.files[0])
+
+//                } />
+//                <button onClick={uploadFiles} className="bg-blue-700 text-white p-2 rounded-lg ">Submit</button>
           
        
-        </div>
-    )
+//         </div>
+//     )
 
-}
+// }
 
 //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhzZXFjdWhvYmpta3hqaGZyemxpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUyNzA2MTcsImV4cCI6MjEwMDg0NjYxN30.A9l76o9C6Ca_Y9RV3KR-qac92o4Id_OY-t3-VQ1zA7c
 //https://hseqcuhobjmkxjhfrzli.supabase.co

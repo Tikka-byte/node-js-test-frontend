@@ -4,6 +4,7 @@ import { toast } from "react-hot-toast";
 import uploadMedia from "../../lib/uploadMedia";
 import api from "../../lib/api";
 import { CiCircleInfo } from "react-icons/ci";
+import LoadingAnimation from "../../components/loadingAnimation";
 
 
 export default function AdminAddProductForm() {
@@ -20,10 +21,11 @@ export default function AdminAddProductForm() {
     const [category, setCategory] = useState("Laptop");
     const [brand, setBrand] = useState("Apple");
     const [model, setModel] = useState("");
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     async function handleSave() {
-
+        setLoading(true);
         const token = localStorage.getItem("token");
         if (token == null) {
             toast.error("You are not logged in");
@@ -32,7 +34,7 @@ export default function AdminAddProductForm() {
         }
 
         const productData = {
-            productId : productId,
+            productId: productId,
             name: name,
             altName: [],
             description: description,
@@ -66,17 +68,19 @@ export default function AdminAddProductForm() {
             });
             console.log(res);
             toast.success("Product saved successfully");
+            navigate("/admin/products");
 
         } catch (err) {
             console.log(err);
             toast.error("Failed to save product");
+            setLoading(false);
         }
     }
 
 
     return (
         <div className="w-full h-full p-3 bg-amber-20 rounded-lg overflow-y-auto transition">
-
+            {loading && <LoadingAnimation />}
             {/* Header */}
             <div className="w-full h-16 bg-secondary/30 rounded-lg px-6 flex items-center justify-between mb-6">
                 <h1 className="text-2xl font-bold">Add Product</h1>
@@ -110,7 +114,7 @@ export default function AdminAddProductForm() {
 
                 {/* Alt Name */}
                 <div className="col-span-3">
-                    <label className=" block mb-2 flex items-center">Alternative Name <span className="ml-2 flex justify-center items-center h-full italic font font-thin"><CiCircleInfo/>(comma separated)</span></label>
+                    <label className=" block mb-2 flex items-center">Alternative Name <span className="ml-2 flex justify-center items-center h-full italic font font-thin"><CiCircleInfo />(comma separated)</span></label>
                     <input value={altName} onChange={(e) => setAltName(e.target.value)} className="w-full h-8 border rounded-lg px-3" />
                 </div>
 
@@ -143,8 +147,13 @@ export default function AdminAddProductForm() {
 
                 {/* Images */}
                 <div >
-                    <label className=" block mb-2">Images</label>
-                    <input type="file" multiple onChange={(e) => {setImages([...e.target.files]); }} className="w-full h-8 border rounded-lg px-3" />
+                    <label className="block mb-2 font-semibold">Images</label>
+
+                    <input
+                        type="file"
+                        multiple
+                        onChange={(e) => setImages([...e.target.files])}
+                        className=" w-full h-8 border border-black flex jestify-center item-center rounded-lg  p-1 file:mr-4 file:px-3 file:py-2 file:rounded-md file:border-0 file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200 cursor-pointer " />
                 </div>
 
 
