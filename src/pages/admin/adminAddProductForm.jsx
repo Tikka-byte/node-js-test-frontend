@@ -84,8 +84,7 @@ export default function AdminAddProductForm() {
                 <div className="flex gap-3">
                     <Link
                         to="/admin/products"
-                        className="px-5 py-2 rounded-lg bg-gray-500 text-white hover:bg-gray-600 transition"
-                    >
+                        className="px-5 py-2 rounded-lg bg-gray-500 text-white hover:bg-gray-600 transition" >
                         Cancel
                     </Link>
 
